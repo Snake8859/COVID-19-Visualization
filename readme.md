@@ -14,18 +14,18 @@
 
 ## 功能设计
 
-![](E:\本科\05计算机设计大赛项目\COVID-DataBoard-Vue\images\功能设计.png)
+![](https://raw.githubusercontent.com/Snake8859/COVID-19-Visualization/master/images/功能设计.png)
 
 ## 技术路线
 
-![](E:\本科\05计算机设计大赛项目\COVID-DataBoard-Vue\images\技术路线.png)
+![](https://raw.githubusercontent.com/Snake8859/COVID-19-Visualization/master/images/技术路线.png)
 
 ## 效果
 
-![主界面](E:\本科\05计算机设计大赛项目\COVID-DataBoard-Vue\images\主界面.jpg)
+![主界面](https://raw.githubusercontent.com/Snake8859/COVID-19-Visualization/master/images/主界面.jpg)
 
-![](E:\本科\05计算机设计大赛项目\COVID-DataBoard-Vue\images\世界疫情界面.jpg)
+![](https://raw.githubusercontent.com/Snake8859/COVID-19-Visualization/master/images/世界疫情界面.jpg)
 
-![中国疫情界面](E:\本科\05计算机设计大赛项目\COVID-DataBoard-Vue\images\中国疫情界面.jpg)
+![中国疫情界面](https://raw.githubusercontent.com/Snake8859/COVID-19-Visualization/master/images/中国疫情界面.jpg)
 
 > 贡献者：计设大赛74674小组成员

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <!--元数据描述-->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+
+    <!--制作者和项目描述-->
+    <meta name="description" content="COVID-19 Visualization Center">
+    <meta name="author" content="snake8859 CSUFT China @ 2020">
+
+
+    <!--页面logo-->
+    <link rel="icon" type="image/png" href="./images/icons/logo.png">
+    <title>COVID-19 Visualization Platform</title>
+
+    <!--CSS============================-->
+    <!-- Bootstrap core CSS -->
+    <link href="libs/bootstrap-3.3.4/css/bootstrap.css" rel="stylesheet">
+    <!-- font-awesome CSS -->
+    <link href="libs/font-awesome/css/font-awesome.css" rel="stylesheet">
+    <!-- animate CSS -->
+    <link href="libs/animate/animate.min.css" rel="stylesheet">
+    <!-- weather CSS -->
+    <link href="libs/weather/screen.css" rel="stylesheet">
+    <!-- scrollbar CSS -->
+    <link href="libs/scrollbar/jquery.mCustomScrollbar.min.css" rel="stylesheet">
+    <!-- mapbox CSS-->
+    <link href="https://api.mapbox.com/mapbox-gl-js/v1.10.0/mapbox-gl.css" rel="stylesheet" />
+    <!-- Custom styles for this template -->
+    <link href="css/normalize.css" rel="stylesheet">
+    <link href="css/component.css" rel="stylesheet">
+    <link href="css/custom.css" rel="stylesheet">
+    <link href="css/extendcustom.css" rel="stylesheet">
+    <!--heatmap-->
+    <!-- <link rel="stylesheet" href="css/heatmap.css"> -->
+    <!--subway-->
+    <!-- <link rel="stylesheet" href="css/subway.css"> -->
+    <!--legend-->
+    <link rel="stylesheet" href="css/legend.css">
+    <!--timeset-->
+    <link rel="stylesheet" href="css/ystep.css">
+    <link href="css/bootstrap-datetimepicker.css" rel="stylesheet">
+    <!-- <link href="css/timeset/font-awesome.min.css" rel="stylesheet"> -->
+    <!-- <link href="css/timeset/animate.min.css" rel="stylesheet"> -->
+    <!-- <link href="css/timeset/prettify-1.0.css" rel="stylesheet"> -->
+    <!-- <link href="css/timeset/base.css" rel="stylesheet"> -->
+    <!-- <link href="css/timeset/default.css" rel="stylesheet"> -->
+    <!--CSS=============================-->
+</head>
+
+<body>
+    <div id="App">
+        <!-- NAVBAR================================================== -->
+        <navbar></navbar>
+        <!-- NAVBAR================================================== -->
+
+        <!-- MAIN CONTAIN================================================== -->
+        <main-container></main-container>
+        <!-- MAIN CONTAIN================================================== -->
+
+        <!-- FOOTER================================================== -->
+        <footer class="footer"></footer>
+        <!-- FOOTER================================================== -->
+
+        <!-- PAGEOVERLAY================================================== -->
+        <!-- <div class="page-overlay"></div> -->
+        <page-overlay></page-overlay>
+        <!-- PAGEOVERLAY================================================== -->
+
+    </div>
+</body>
+<!-- MAIN CORE JAVASCRIPT================================================== -->
+<!--vuejs-->
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<!--axios-->
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<!--jquery-->
+<script src="./libs/jquery-1.11.3.min.js"></script>
+<!--AnimatedLetters-->
+<script src="./libs/AnimatedLetters/segment.min.js"></script>
+<script src="./libs/AnimatedLetters/d3-ease.v0.6.js"></script>
+<script src="./libs/AnimatedLetters/letters.js"></script>
+<!--echarts-->
+<script src="./libs/echarts.min.js"></script>
+<!--scrollbar-->
+<script src="./libs/scrollbar/jquery.mCustomScrollbar.concat.min.js"></script>
+<script src="libs/xenon/js/joinable.js"></script>
+<!--bootstrap-->
+<script src="./libs/bootstrap-3.3.4/js/bootstrap.min.js"></script>
+<script src="./libs/vTicker.min.js"></script>
+<!--mapbox-->
+<script src="https://api.mapbox.com/mapbox-gl-js/v1.10.0/mapbox-gl.js"></script>
+<!--componet -->
+<script src="./componet/page-overlay.js"></script>
+<script src="./componet/navbar.js"></script>
+<script src="./componet/main-container.js"></script>
+<script src="./componet/leftbar.js"></script>
+<script src="./componet/rightbar.js"></script>
+<script src="./componet/bottombar.js"></script>
+<!--config-->
+<script src="./config/config_snake.js"></script>
+<!--timeset-->
+<script src="./libs/timeset/setStep.js"></script>
+<script src="./libs/timeset/moment-with-locales.js"></script>
+<script src="./libs/timeset/bootstrap-datetimepicker.js"></script>
+<!--搜狐ip定位-->
+<script src="http://pv.sohu.com/cityjson?ie=utf-8"></script>
+<!--flexible-->
+<script src="./libs/flexible.js"></script>
+
+
+<script type="text/javascript">
+    var vm = new Vue({
+        el: '#App',
+        data: {},
+        methods: {},
+        mounted: function() {
+
+        }
+    });
+</script>
+<!-- MAIN CORE JAVASCRIPT================================================== -->
+
+</html>

@@ -1,0 +1,93 @@
+#rightMark {
+    position: absolute;
+    right: 3%;
+    bottom: 22%;
+    background-color: rgba(73, 73, 72, .6);
+    border-radius: .065104rem;
+    padding: 1em
+}
+
+#centerMark {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 22%;
+    background-color: rgba(73, 73, 72, .6);
+    border-radius: .065104rem;
+    padding: 1em
+}
+
+.mark_text {
+    color: #dfdfdf
+}
+
+.mark_title {
+    color: #fff;
+    font-size: .104167rem
+}
+
+.blue,
+.green,
+.red,
+.result_red,
+.yellow,
+.text_center {
+    text-align: center
+}
+
+.color_span {
+    margin: .130208rem;
+}
+
+.heatmap_linear_color {
+    margin-top: .065104rem;
+    height: .032552rem;
+    border-radius: .013021rem;
+    width: 2.604167rem;
+    /* background:-webkit-linear-gradient(left,rgba(0,0,0,.1),#00f,#0f0,#ff0,red,red)!important;
+	background:-moz-linear-gradient(left,rgba(0,0,0,.1),#00f,#0f0,#ff0,red,red)!important;
+	background:-ms-linear-gradient(left,rgba(0,0,0,.1),#00f,#0f0,#ff0,red,red)!important;
+	background:-o-linear-gradient(left,rgba(0,0,0,.1),#00f,#0f0,#ff0,red,red)!important;
+	background:linear-gradient(left,rgba(0,0,0,.1),#00f,#0f0,#ff0,red,red)!important */
+    background: -webkit-linear-gradient(left, rgba(33, 102, 172, 0), rgb(103, 169, 207), rgb(209, 229, 240), rgb(253, 219, 199), rgb(239, 138, 98), rgb(178, 24, 43))!important;
+    background: -moz-linear-gradient(left, rgba(33, 102, 172, 0), rgb(103, 169, 207), rgb(209, 229, 240), rgb(253, 219, 199), rgb(239, 138, 98), rgb(178, 24, 43))!important;
+    background: -ms-linear-gradient(left, rgba(33, 102, 172, 0), rgb(103, 169, 207), rgb(209, 229, 240), rgb(253, 219, 199), rgb(239, 138, 98), rgb(178, 24, 43))!important;
+    background: -o-linear-gradient(left, rgba(33, 102, 172, 0), rgb(103, 169, 207), rgb(209, 229, 240), rgb(253, 219, 199), rgb(239, 138, 98), rgb(178, 24, 43))!important;
+    background: linear-gradient(left, rgba(33, 102, 172, 0), rgb(103, 169, 207), rgb(209, 229, 240), rgb(253, 219, 199), rgb(239, 138, 98), rgb(178, 24, 43))!important
+}
+
+.subway_linear_color {
+    margin-top: .065104rem;
+    height: .032552rem;
+    border-radius: .013021rem;
+    width: 2.604167rem;
+    background: -webkit-linear-gradient(left, rgb(51, 0, 255), rgb(92, 10, 214), rgb(133, 20, 173), rgb(173, 31, 133), rgb(214, 41, 92), rgb(255, 51, 51))!important;
+    background: -moz-linear-gradient(left, rgb(51, 0, 255), rgb(92, 10, 214), rgb(133, 20, 173), rgb(173, 31, 133), rgb(214, 41, 92), rgb(255, 51, 51))!important;
+    background: -ms-linear-gradient(left, rgb(51, 0, 255), rgb(92, 10, 214), rgb(133, 20, 173), rgb(173, 31, 133), rgb(214, 41, 92), rgb(255, 51, 51))!important;
+    background: -o-linear-gradient(left, rgb(51, 0, 255), rgb(92, 10, 214), rgb(133, 20, 173), rgb(173, 31, 133), rgb(214, 41, 92), rgb(255, 51, 51))!important;
+    background: linear-gradient(left, rgb(51, 0, 255), rgb(92, 10, 214), rgb(133, 20, 173), rgb(173, 31, 133), rgb(214, 41, 92), rgb(255, 51, 51))!important
+}
+
+.worldmap_linear_color {
+    margin-top: .065104rem;
+    height: .032552rem;
+    border-radius: .013021rem;
+    width: 2.604167rem;
+    background: -webkit-linear-gradient(left, rgb(0, 0, 0), rgb(207, 108, 115), rgb(182, 85, 88), rgb(181, 56, 93), rgb(214, 41, 92))!important;
+    background: -moz-linear-gradient(left, rgb(0, 0, 0), rgb(207, 108, 115), rgb(182, 85, 88), rgb(181, 56, 93), rgb(214, 41, 92))!important;
+    background: -ms-linear-gradient(left, rgb(0, 0, 0), rgb(207, 108, 115), rgb(182, 85, 88), rgb(181, 56, 93), rgb(214, 41, 92))!important;
+    background: -o-linear-gradient(left, rgb(0, 0, 0), rgb(207, 108, 115), rgb(182, 85, 88), rgb(181, 56, 93), rgb(214, 41, 92))!important;
+    background: linear-gradient(left, rgb(0, 0, 0), rgb(207, 108, 115), rgb(182, 85, 88), rgb(181, 56, 93), rgb(214, 41, 92))!important
+}
+
+.chinamap_linear_color {
+    margin-top: .065104rem;
+    height: .032552rem;
+    border-radius: .013021rem;
+    width: 2.604167rem;
+    background: -webkit-linear-gradient(left, rgb(204, 255, 153), rgb(217, 230, 140), rgb(230, 204, 128), rgb(242, 179, 115), rgb(255, 153, 102))!important;
+    background: -moz-linear-gradient(left, rgb(204, 255, 153), rgb(217, 230, 140), rgb(230, 204, 128), rgb(242, 179, 115), rgb(255, 153, 102))!important;
+    background: -ms-linear-gradient(left, rgb(204, 255, 153), rgb(217, 230, 140), rgb(230, 204, 128), rgb(242, 179, 115), rgb(255, 153, 102))!important;
+    background: -o-linear-gradient(left, rgb(204, 255, 153), rgb(217, 230, 140), rgb(230, 204, 128), rgb(242, 179, 115), rgb(255, 153, 102))!important;
+    background: linear-gradient(left, rgb(204, 255, 153), rgb(217, 230, 140), rgb(230, 204, 128), rgb(242, 179, 115), rgb(255, 153, 102))!important
+}

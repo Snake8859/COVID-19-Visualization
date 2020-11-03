@@ -179,12 +179,12 @@
 
 .third-right-box {
     width: 100%;
-    height: 65%;
+    height: 70%;
 }
 
 .fourth-right-box {
     width: 100%;
-    height: 25%;
+    height: 20%;
     margin-right: 0px;
     margin-left: 0px;
     margin-top: 3%;
@@ -259,6 +259,8 @@
 .bar-content-bottom ul .bottom-item {
     display: flex;
     flex-direction: row;
+    cursor: pointer;
+    user-select: none;
 }
 
 .bar-content-bottom ul li:hover {

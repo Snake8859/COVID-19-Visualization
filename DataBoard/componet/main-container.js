@@ -51,19 +51,19 @@ let main_container_template = `
                     <span class="result_red mark_text color_span">&gt;20</span>
                 </div>
 
-                <div id="heatmap_date">
-                    <div class='col-md-8'>
-                        <label>
-                            时间&nbsp;&nbsp;&nbsp;
-                        </label>
-                        <div class='input-group date'>
-                            <!-- <input type='text' class='form-control'  id='heat_datetimepicker'  @blur='_peopleAnalysisByDay()'/> -->
-                            <input type='text' class='form-control'  id='heat_datetimepicker'/>
-                        </div>
-                    </div>
-                    <button class='btn btn-primary btn-sm' style="margin-top:10%" @click='play(heatPlay)'>
-                        {{playInfo}}
-                    </button>
+                <div id="heatmap_date" :style="{right:timeBoxRight}">
+                  <div class='col-md-8'>
+                      <label>
+                          时间&nbsp;&nbsp;&nbsp;
+                      </label>
+                      <div class='input-group date'>
+                          <!-- <input type='text' class='form-control'  id='heat_datetimepicker'  @blur='_peopleAnalysisByDay()'/> -->
+                          <input type='text' class='form-control'  id='heat_datetimepicker'/>
+                      </div>
+                  </div>
+                  <button class='btn btn-primary btn-sm' style="margin-top:10%" @click='play(heatPlay)'>
+                      {{playInfo}}
+                  </button>
                 </div>
             </div>
 
@@ -112,7 +112,7 @@ Vue.component('main-container', {
   data: function () {
     return {
       map: undefined, //地图对象
-
+      timeBoxRight: '-5%', // 加载岳麓山图层之后的时间选择box的right位置
       //世界图层geojson，世界疫情概况数据和国家名称
       worldLayerData: undefined,
       worldStatistics: undefined,
@@ -710,7 +710,21 @@ Vue.component('main-container', {
       //隐藏加载logo2
       !$('.page-overlay').hasClass('loaded') && $('.page-overlay').addClass('loaded');
       // $(".page-overlay").hasClass("clear") && $(".page-overlay").removeClass("clear")
+    },
+    animationRight(val) {
+      const tmp = parseFloat(this.timeBoxRight.replace('%', '')) + val;
+      if (tmp > -6 && tmp < 15) {
+        this.timeBoxRight = tmp + '%';
+        requestAnimationFrame(() => this.animationRight(val));
+      }
     }
+  },
+  beforeMount() {
+    emitter.on('changeTimeBoxPositionRight', data => {
+      // this.timeBoxRight = data;
+      if (data === '14%') requestAnimationFrame(() => this.animationRight(0.5));
+      else if (data === '-5%') requestAnimationFrame(() => this.animationRight(-0.5));
+    });
   },
   mounted: function () {
     this._initMap(); //初始化地图
@@ -723,6 +737,9 @@ Vue.component('main-container', {
     let timer3 = setTimeout(() => {
       this._hideLoader2(); //隐藏加载状态
     }, 8000);
+  },
+  beforeDestroy() {
+    emitter.off('changeTimeBoxPositionRight');
   },
   template: main_container_template
 });

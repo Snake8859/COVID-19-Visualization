@@ -1,306 +1,299 @@
 /* 自行拓展的CSS */
 
-
 /* nav*/
 
 .navbar {
-    height: .540365rem
+  height: 0.540365rem;
 }
 
 .navbar-header .navbar-brand {
-    display: flex;
-    flex-direction: row;
+  display: flex;
+  flex-direction: row;
 }
 
 .navbar-header .navbar-brand img {
-    width: 100%;
-    height: 100%;
-    flex: 1;
+  width: 100%;
+  height: 100%;
+  flex: 1;
 }
 
 .navbar-header .navbar-brand .navbar-title {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
-
 
 /* sideBar */
 
 .sideBar {
-    position: absolute;
-    top: .533854rem;
-    bottom: 0rem;
-    max-width: 2.083333rem;
-    width: 20%;
-    background-color: rgba(1, 6, 17, 0.8);
-    -webkit-transition: all 1000ms ease-in-out;
-    -moz-transition: all 1000ms ease-in-out;
-    -o-transition: all 1000ms ease-in-out;
-    transition: all 1000ms ease-in-out;
+  position: absolute;
+  top: 0.533854rem;
+  bottom: 0rem;
+  max-width: 2.083333rem;
+  width: 20%;
+  background-color: rgba(1, 6, 17, 0.8);
+  -webkit-transition: all 1000ms ease-in-out;
+  -moz-transition: all 1000ms ease-in-out;
+  -o-transition: all 1000ms ease-in-out;
+  transition: all 1000ms ease-in-out;
 }
 
 .sideBar .bar-content {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    position: relative;
-    padding: .032552rem .065104rem;
-    width: 100%;
-    height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  padding: 0.032552rem 0.065104rem;
+  width: 100%;
+  height: 100%;
 }
 
 .first-text {
-    font-size: .104167rem;
-    margin-bottom: .019531rem;
+  font-size: 0.104167rem;
+  margin-bottom: 0.019531rem;
 }
 
 .first-entext {
-    font-size: .078125rem;
-    color: rgb(153, 153, 153);
+  font-size: 0.078125rem;
+  color: rgb(153, 153, 153);
 }
 
 .second-larger-text {
-    font-size: .195313rem;
-    text-align: center;
-    font-weight: 500;
+  font-size: 0.195313rem;
+  text-align: center;
+  font-weight: 500;
 }
 
 .second-middle-text {
-    font-size: .117188rem;
-    text-align: center;
-    font-weight: 500;
+  font-size: 0.117188rem;
+  text-align: center;
+  font-weight: 500;
 }
 
 .second-small-text {
-    text-align: center;
-    font-size: .065104rem;
+  text-align: center;
+  font-size: 0.065104rem;
 }
-
 
 /* left */
 
 .first-left {
-    display: flex;
-    flex-direction: column;
-    justify-content: right;
-    width: 100%;
-    vertical-align: middle;
-    text-align: right;
-    margin-bottom: .019531rem;
-    padding: .032552rem .078125rem;
-    border-right: .032552rem solid #f68c0e;
+  display: flex;
+  flex-direction: column;
+  justify-content: right;
+  width: 100%;
+  vertical-align: middle;
+  text-align: right;
+  margin-bottom: 0.019531rem;
+  padding: 0.032552rem 0.078125rem;
+  border-right: 0.032552rem solid #f68c0e;
 }
 
 .second-left .second-left-box {
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
 }
 
 .second-left .second-left-box:nth-child(1) p {
-    text-align: center;
-    font-size: .16276rem;
-    color: navajowhite;
-    font-weight: bolder;
+  text-align: center;
+  font-size: 0.16276rem;
+  color: navajowhite;
+  font-weight: bolder;
 }
 
 .second-left .second-left-box:nth-child(2) #national_numchange0 {
-    flex: 1;
+  flex: 1;
 }
 
 .second-left .second-left-box:nth-child(3) .second-subbox {
-    flex: 1;
+  flex: 1;
 }
 
 .third-left-box {
-    height: 65%;
-    width: 100%;
+  height: 65%;
+  width: 100%;
 }
 
 .fourth-left-box {
-    width: 100%;
-    height: 25%;
-    margin-top: 3%;
-    margin-right: 0px;
-    margin-left: 0px;
-    padding-left: 0px;
-    padding-right: 0px;
-    overflow: visible;
-    position: relative;
+  width: 100%;
+  height: 25%;
+  margin-top: 3%;
+  margin-right: 0px;
+  margin-left: 0px;
+  padding-left: 0px;
+  padding-right: 0px;
+  overflow: visible;
+  position: relative;
 }
 
 .fourth-left-box table thead tr th:nth-child(1) {
-    font-size: .117188rem;
+  font-size: 0.117188rem;
 }
 
-.fourth-left-box table thead tr th:nth-child(n+2) {
-    font-size: .091146rem;
+.fourth-left-box table thead tr th:nth-child(n + 2) {
+  font-size: 0.091146rem;
 }
-
 
 /* right */
 
 .first-right {
-    display: flex;
-    flex-direction: column;
-    justify-content: left;
-    width: 100%;
-    vertical-align: middle;
-    text-align: left;
-    margin-bottom: .019531rem;
-    padding: .032552rem .078125rem;
-    border-left: .032552rem solid rgb(0, 180, 255);
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
+  width: 100%;
+  vertical-align: middle;
+  text-align: left;
+  margin-bottom: 0.019531rem;
+  padding: 0.032552rem 0.078125rem;
+  border-left: 0.032552rem solid rgb(0, 180, 255);
 }
 
 .second-right .second-right-box {
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
 }
 
 .second-right .second-right-box:nth-child(1) p {
-    text-align: center;
-    font-size: .16276rem;
-    color: navajowhite;
-    font-weight: 800;
+  text-align: center;
+  font-size: 0.16276rem;
+  color: navajowhite;
+  font-weight: 800;
 }
 
 .second-right .second-right-box:nth-child(2) .second-subbox {
-    flex: 1;
+  flex: 1;
 }
 
 .second-right .second-right-box:nth-child(3) .second-subbox {
-    flex: 1;
+  flex: 1;
 }
 
 .third-right-box {
-    width: 100%;
-    height: 70%;
+  width: 100%;
+  height: 70%;
 }
 
 .fourth-right-box {
-    width: 100%;
-    height: 20%;
-    margin-right: 0px;
-    margin-left: 0px;
-    margin-top: 3%;
-    padding-left: 0px;
-    padding-right: 0px;
-    overflow: hidden;
+  width: 100%;
+  height: 20%;
+  margin-right: 0px;
+  margin-left: 0px;
+  margin-top: 3%;
+  padding-left: 0px;
+  padding-right: 0px;
+  overflow: hidden;
 }
 
 .fourth-right-box table thead tr th:nth-child(1) {
-    font-size: .117188rem;
+  font-size: 0.117188rem;
 }
 
-.fourth-right-box table thead tr th:nth-child(n+2) {
-    font-size: .091146rem;
+.fourth-right-box table thead tr th:nth-child(n + 2) {
+  font-size: 0.091146rem;
 }
-
 
 /* bottom */
 
 .bottomBar {
-    position: absolute;
-    bottom: 0;
-    left: 2.083333rem;
-    right: 2.083333rem;
-    height: 1.5625rem;
-    background-color: rgba(1, 6, 17, 0.6);
-    box-shadow: 0 .065104rem .651042rem 0 rgba(0, 0, 0, 0.8) inset;
-    -webkit-transition: all 1000ms ease-in-out;
-    -moz-transition: all 1000ms ease-in-out;
-    -o-transition: all 1000ms ease-in-out;
-    transition: all 1000ms ease-in-out;
+  position: absolute;
+  bottom: 0;
+  left: 2.083333rem;
+  right: 2.083333rem;
+  height: 1.5625rem;
+  background-color: rgba(1, 6, 17, 0.6);
+  box-shadow: 0 0.065104rem 0.651042rem 0 rgba(0, 0, 0, 0.8) inset;
+  -webkit-transition: all 1000ms ease-in-out;
+  -moz-transition: all 1000ms ease-in-out;
+  -o-transition: all 1000ms ease-in-out;
+  transition: all 1000ms ease-in-out;
 }
 
 .bar-content-bottom {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    position: relative;
-    padding: .065104rem .032552rem;
-    width: 100%;
-    height: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  position: relative;
+  padding: 0.065104rem 0.032552rem;
+  width: 100%;
+  height: 100%;
 }
 
 .bar-content-bottom .bottom-left {
-    flex: 1;
-    margin-top: .130208rem;
-    overflow: hidden;
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    height: 1.953125rem !important;
+  flex: 1;
+  margin-top: 0.130208rem;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 1.953125rem !important;
 }
 
 .bar-content-bottom .bottom-left ul a {
-    color: #ffffff !important;
+  color: #ffffff !important;
 }
 
 .bar-content-bottom .bottom-right {
-    flex: 1;
-    margin-top: .130208rem;
-    overflow: hidden;
-    position: relative;
-    height: 1.953125rem !important;
+  flex: 1;
+  margin-top: 0.130208rem;
+  overflow: hidden;
+  position: relative;
+  height: 1.953125rem !important;
 }
 
 .bar-content-bottom ul {
-    list-style: none;
-    padding: .032552rem .097656rem !important;
-    overflow: hidden;
+  list-style: none;
+  padding: 0.032552rem 0.097656rem !important;
+  overflow: hidden;
 }
 
 .bar-content-bottom ul .bottom-item {
-    display: flex;
-    flex-direction: row;
-    cursor: pointer;
-    user-select: none;
+  display: flex;
+  flex-direction: row;
+  cursor: pointer;
+  user-select: none;
 }
 
 .bar-content-bottom ul li:hover {
-    background-color: rgba(236, 177, 15, 0.3);
+  background-color: rgba(236, 177, 15, 0.3);
 }
 
 .bar-content-bottom ul .bottom-item div {
-    margin-right: .065104rem;
-    margin-bottom: .065104rem;
+  margin-right: 0.065104rem;
+  margin-bottom: 0.065104rem;
 }
 
 .bar-content-bottom ul .bottom-item .bottom-item-info {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: right;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: right;
 }
 
 .bar-content-bottom ul .bottom-item .bottom-item-info p:nth-child(1) {
-    margin-bottom: 0;
-    color: #00b4ff;
+  margin-bottom: 0;
+  color: #00b4ff;
 }
 
 .bar-content-bottom ul .bottom-item .bottom-item-info p:nth-child(2) {
-    margin-bottom: 0;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    overflow: hidden;
+  margin-bottom: 0;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
-
 
 /* main */
 
 #heatmap_date {
-    position: absolute;
-    right: 14%;
-    transform: translateX(-50%);
-    top: 12%;
-    width: 13%;
-    background-color: rgba(199, 199, 199, 0.6);
-    z-index: 100;
-    padding-bottom: 12px;
+  position: absolute;
+  transform: translateX(-50%);
+  top: 12%;
+  width: 13%;
+  background-color: rgba(199, 199, 199, 0.6);
+  z-index: 100;
+  padding-bottom: 12px;
 }

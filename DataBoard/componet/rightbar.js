@@ -807,10 +807,12 @@ Vue.component('rightbar', function (resolve, reject) {
             $('.right').css('right', 10 - rightwidth);
             $('#BottomBar').css('right', '10px');
             this.clickRightCount++;
+            emitter.emit('changeTimeBoxPositionRight', '-5%');
           } else {
             $('.right').css('right', '0px');
             $('#BottomBar').css('right', rightwidth);
             this.clickRightCount++;
+            emitter.emit('changeTimeBoxPositionRight', '14%');
           }
           $(window).trigger('resize');
         },

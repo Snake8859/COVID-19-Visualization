@@ -296,10 +296,11 @@
 
 #heatmap_date {
     position: absolute;
-    left: 50%;
+    right: 14%;
     transform: translateX(-50%);
-    bottom: 18%;
+    top: 12%;
     width: 13%;
     background-color: rgba(199, 199, 199, 0.6);
     z-index: 100;
+    padding-bottom: 12px;
 }

@@ -61,7 +61,7 @@ let main_container_template = `
                             <input type='text' class='form-control'  id='heat_datetimepicker'/>
                         </div>
                     </div>
-                    <button class='btn btn-primary btn-sm' style="margin-top:14%" @click='play(heatPlay)'>
+                    <button class='btn btn-primary btn-sm' style="margin-top:10%" @click='play(heatPlay)'>
                         {{playInfo}}
                     </button>
                 </div>
@@ -380,6 +380,11 @@ Vue.component('main-container', {
 
     //播放
     play: function (play) {
+      let datetime = $('#heat_datetimepicker').val();
+      if (datetime === '') {
+        alert('请先选择日期');
+        return;
+      }
       if (this.playInfo == '播放') {
         //若播放
         // console.log("播放");
@@ -393,65 +398,63 @@ Vue.component('main-container', {
       }
     },
 
-    //人流量密度监控 按小时
+    //岳麓山人流量密度监控 按小时
     _peopleAnalysisByHour: function () {
       let datetime = $('#heat_datetimepicker').val();
       let hour = $('div#heatmap_bar li.ystep-step-active').html().split(':')[0];
       // console.log(hour);
-      if (datetime != '') {
-        //console.log(datetime)
-        axios
-          .get(configOptions.people.dataUrl, {
-            params: {
-              dateTime: datetime,
-              hour: hour
-            }
-          })
-          .then(res => {
+      //console.log(datetime)
+      axios
+        .get(configOptions.people.dataUrl, {
+          params: {
+            dateTime: datetime,
+            hour: hour
+          }
+        })
+        .then(res => {
+          // console.log(res);
+          if (res.data.code == '200') {
+            //热力图生成成功
             // console.log(res);
-            if (res.data.code == '200') {
-              //热力图生成成功
-              // console.log(res);
-              let heatData = res.data.data;
+            let heatData = res.data.data;
 
-              let heatGeoJson = {
-                type: 'FeatureCollection',
-                features: []
+            let heatGeoJson = {
+              type: 'FeatureCollection',
+              features: []
+            };
+
+            heatData.forEach(element => {
+              //构建单个要素
+              let feature = {
+                geometry: {
+                  coordinates: undefined,
+                  type: 'Point'
+                },
+                tpye: 'Feature',
+                properties: {
+                  count: undefined
+                }
               };
+              feature.geometry.coordinates = [parseFloat(element.lng), parseFloat(element.lat)];
+              feature.properties.count = parseInt(element.count);
+              heatGeoJson.features.push(feature);
+            });
 
-              heatData.forEach(element => {
-                //构建单个要素
-                let feature = {
-                  geometry: {
-                    coordinates: undefined,
-                    type: 'Point'
-                  },
-                  tpye: 'Feature',
-                  properties: {
-                    count: undefined
-                  }
-                };
-                feature.geometry.coordinates = [parseFloat(element.lng), parseFloat(element.lat)];
-                feature.properties.count = parseInt(element.count);
-                heatGeoJson.features.push(feature);
-              });
+            // console.log(heatGeoJson);
 
-              // console.log(heatGeoJson);
-
-              this._generateHeatMapByHour(heatGeoJson);
-            } else {
-              alert(res.data.msg + ',该日暂无人流量数据');
-            }
-          })
-          .catch(err => {
-            console.log(err);
-          })
-          .then(() => {
-            // always executed
-          });
-      } else {
-        alert('请先选择日期');
-      }
+            this._generateHeatMapByHour(heatGeoJson);
+          } else {
+            alert(res.data.msg + ',该时间暂无人流量数据');
+            clearInterval(interval);
+            this.playInfo = '播放';
+          }
+        })
+        .catch(err => {
+          console.log(err);
+        })
+        .then(() => {
+          // always executed
+        });
     },
 
     //生成热力图 按小时

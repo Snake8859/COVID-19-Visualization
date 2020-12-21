@@ -23,7 +23,8 @@ let leftbar_template = `
             <div class="second-left-box">
                 <div id="national_numchange0">
                     <div id="national_aa" class="second-larger-text" style="color: #fbd71e;" data-count="this"
-                    data-from="1" :data-to="currentConfirmedCount" data-suffix="" data-duration="1" data-easing="false">
+                    data-from="1" data-suffix="" data-duration="1" data-easing="false">
+                    {{currentConfirmedCount}}
                     </div>
                     <p class="second-small-text">
                         现存确诊
@@ -66,7 +67,7 @@ let leftbar_template = `
                     </div>
                     <p class="second-small-text" >
                         累计治愈
-                        <span v-if="curedIncrFlag&&showIncrFlag" style="color: springgreen;">&nbsp;+{{curedIncr}}</span>
+                        <span v-if="curedIncrFlag&&showIncrFlag" style="color: springgreen;">&nbsp;{{curedIncr}}</span>
                         <span v-if="!curedIncrFlag&&showIncrFlag" style="color: orangered;">&nbsp;{{curedIncr}}</span>
                     </p>
                 </div>
@@ -307,37 +308,37 @@ Vue.component('leftbar', function (resolve, reject) {
           return c;
         },
         simpleCount(num) {
-          if (num >= 1000000) {
-            return `${Math.floor(num / 10000)}w+`;
+          if (Math.abs(num) >= 10000) {
+            return `${Math.floor(num / 10000)}w`;
           } else {
             return num;
           }
         },
         //初始化世界概况数据
         _initLeftOverAllData: function () {
-          this.currentConfirmedCount = this.worldStatistics.currentConfirmedCount; //世界当前确诊
-          this.currentConfirmedIncr = this.worldStatistics.currentConfirmedIncr; //世界现存确诊-变化
+          this.currentConfirmedCount = this.simpleCount(this.worldStatistics.currentConfirmedCount); //世界当前确诊
+          this.currentConfirmedIncr = this.simpleCount(this.worldStatistics.currentConfirmedIncr); //世界现存确诊-变化
           if (this.currentConfirmedIncr < 0) {
             //若人数减少
             this.currentCCIncrFlag = false;
           }
 
           this.confirmedCount = this.simpleCount(this.worldStatistics.confirmedCount); //世界累计确诊
-          this.confirmedIncr = this.worldStatistics.confirmedIncr; //世界累计确诊-变化
+          this.confirmedIncr = this.simpleCount(this.worldStatistics.confirmedIncr); //世界累计确诊-变化
           if (this.confirmedIncr < 0) {
             //若人数减少
             this.confirmedIncrFlag = false;
           }
 
           this.curedCount = this.simpleCount(this.worldStatistics.curedCount); //世界累计治愈
-          this.curedIncr = this.worldStatistics.curedIncr; //世界治愈-变化
+          this.curedIncr = this.simpleCount(this.worldStatistics.curedIncr); //世界治愈-变化
           if (this.curedIncr < 0) {
             //若人数减少
             this.curedIncrFlag = false;
           }
 
           this.deadCount = this.simpleCount(this.worldStatistics.deadCount); //世界累计死亡
-          this.deadIncr = this.worldStatistics.deadIncr; //世界死亡-变化
+          this.deadIncr = this.simpleCount(this.worldStatistics.deadIncr); //世界死亡-变化
           if (this.deadIncr < 0) {
             //若人数减少
             this.deadIncrFlag = false;

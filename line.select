@@ -1,0 +1,6 @@
+#Select rules:
+DataBoard/component
+DataBoard/config
+DataBoard/css
+DataBoard/index.html
+DataBoard/libs/timeset/setStep.js

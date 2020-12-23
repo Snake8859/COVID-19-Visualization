@@ -389,21 +389,26 @@ Vue.component('main-container', {
         //若播放
         // console.log("播放");
         this.playInfo = '暂停';
-        interval = setInterval('step.autoPlay()', '1500');
+        step.autoPlay();
       } else {
         //若暂停
         // console.log("暂停");
         this.playInfo = '播放';
-        clearInterval(interval);
+        // clearInterval(interval);
       }
     },
 
     //岳麓山人流量密度监控 按小时
     _peopleAnalysisByHour: function () {
+      if (!$('#heatmap_bar li.ystep-step-active').html() || !$('#heat_datetimepicker').val()) {
+        step.autoPlay();
+        return;
+      }
       let datetime = $('#heat_datetimepicker').val();
-      let hour = $('div#heatmap_bar li.ystep-step-active').html().split(':')[0];
+      // console.log($('#heatmap_bar li.ystep-step-active'));
+      let hour = $('#heatmap_bar li.ystep-step-active').html().split(':')[0];
       // console.log(hour);
-      //console.log(datetime)
+      // console.log(datetime);
       axios
         .get(configOptions.people.dataUrl, {
           params: {
@@ -443,6 +448,7 @@ Vue.component('main-container', {
             // console.log(heatGeoJson);
 
             this._generateHeatMapByHour(heatGeoJson);
+            step.autoPlay();
           } else {
             alert(res.data.msg + ',该时间暂无人流量数据');
             clearInterval(interval);

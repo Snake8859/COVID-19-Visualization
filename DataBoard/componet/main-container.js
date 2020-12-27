@@ -67,7 +67,7 @@ let main_container_template = `
                 </div>
             </div>
 
-            <div id="heatmap_bar" style="position: absolute;width: 100%;bottom: 2%;background-color: rgba(199, 199, 199, 0.6);z-index: 100;" v-show="heatFlag">
+            <div id="heatmap_bar" :style="{position: 'absolute',width: '100%',bottom: '2%',backgroundColor: 'rgba(199, 199, 199, 0.6)',zIndex: 100,pointerEvents}" v-show="heatFlag">
                 <div class='ystep-container ystep-lg ystep-blue'>
                 </div>
             </div>
@@ -105,6 +105,7 @@ let main_container_template = `
         <rightbar :map="map" :chinaLayerData="chinaLayerData" :chianStatistics="chianStatistics" @watchProvinceName="watchProvinceName"></rightbar>
         <bottombar></bottombar>
     </div>
+    <div v-if="loading" class="loader-2"><div class="loading-container"><div class="img-div"><img src="./images/icons/loading.gif"></div></div></div>
 </div>
 `;
 //全局注册组件
@@ -133,7 +134,11 @@ Vue.component('main-container', {
       colorCard: ['#3300FF', '#5C0AD6', '#8514AD', '#AD1F85', '#D6295C', '#FF3333'],
       colorList: [],
       playInfo: '播放', //播放按钮
-      heatMapData: undefined //热力图数据
+      heatMapData: undefined, //热力图数据
+      pauseTime: '00', //暂停的时间点
+      loading: false,
+      worker: null,
+      pointerEvents: 'none'
     };
   },
   methods: {
@@ -279,16 +284,47 @@ Vue.component('main-container', {
           ]
         });
         //时间插件初始化
-        $('#heat_datetimepicker').datetimepicker({
-          viewMode: 'days',
-          format: 'YYYY-MM-DD'
-        });
+        $('#heat_datetimepicker')
+          .datetimepicker({
+            viewMode: 'days',
+            format: 'YYYY-MM-DD'
+          })
+          .on('dp.change', async e => {
+            this.pointerEvents = 'auto';
+            // 停止时间轴的移动
+            this.intervalTime && clearInterval(this.intervalTime);
+            // 将时间轴节点归0
+            step.setZero();
+            // 停止播放
+            this.playInfo = '播放';
+            // console.log(e);
+            // console.log($('#heat_datetimepicker').val());
+            const datetime = $('#heat_datetimepicker').val();
+
+            this.worker && this.worker.terminate();
+            this.worker = new Worker('./worker/index.js');
+            this.worker.postMessage({ datetime });
+
+            const startTime = new Date();
+            this.loading = true;
+            for (let i = 0; i < 12; i++) {
+              const hour = i < 10 ? `0${i}` : `${i}`;
+              try {
+                const buffer = await readInYueluMountainCrowdDb(datetime + '-' + hour);
+              } catch (err) {
+                console.log(`${err}，开始写入indexedDB`);
+                await this.requestCrowdInHour(datetime, hour);
+              }
+            }
+            console.log(`耗时${(new Date() - startTime) / 1000}s`);
+            this.loading = false;
+          });
 
         //加载岳麓山边界
         axios
           .get(configOptions.geojson.yls)
           .then(res => {
-            console.log(res);
+            // console.log(res);
             map.addLayer({
               id: 'yls',
               type: 'fill',
@@ -380,11 +416,6 @@ Vue.component('main-container', {
 
     //播放
     play: function (play) {
-      let datetime = $('#heat_datetimepicker').val();
-      if (datetime === '') {
-        alert('请先选择日期');
-        return;
-      }
       if (this.playInfo == '播放') {
         //若播放
         // console.log("播放");
@@ -394,73 +425,101 @@ Vue.component('main-container', {
         //若暂停
         // console.log("暂停");
         this.playInfo = '播放';
+        this.pauseTime = '23';
         // clearInterval(interval);
       }
     },
 
-    //岳麓山人流量密度监控 按小时
-    _peopleAnalysisByHour: function () {
-      if (!$('#heatmap_bar li.ystep-step-active').html() || !$('#heat_datetimepicker').val()) {
-        step.autoPlay();
-        return;
-      }
-      let datetime = $('#heat_datetimepicker').val();
-      // console.log($('#heatmap_bar li.ystep-step-active'));
-      let hour = $('#heatmap_bar li.ystep-step-active').html().split(':')[0];
-      // console.log(hour);
-      // console.log(datetime);
-      axios
-        .get(configOptions.people.dataUrl, {
+    // 请求岳麓山每日各个时间点的人流量数据
+    async requestCrowdInHour(datetime, hour, isRender = false) {
+      try {
+        const res = await axios.get(configOptions.people.dataUrl, {
           params: {
             dateTime: datetime,
             hour: hour
           }
-        })
-        .then(res => {
-          // console.log(res);
-          if (res.data.code == '200') {
-            //热力图生成成功
-            // console.log(res);
-            let heatData = res.data.data;
-
-            let heatGeoJson = {
-              type: 'FeatureCollection',
-              features: []
-            };
-
-            heatData.forEach(element => {
-              //构建单个要素
-              let feature = {
-                geometry: {
-                  coordinates: undefined,
-                  type: 'Point'
-                },
-                tpye: 'Feature',
-                properties: {
-                  count: undefined
-                }
-              };
-              feature.geometry.coordinates = [parseFloat(element.lng), parseFloat(element.lat)];
-              feature.properties.count = parseInt(element.count);
-              heatGeoJson.features.push(feature);
-            });
-
-            // console.log(heatGeoJson);
-
-            this._generateHeatMapByHour(heatGeoJson);
-            step.autoPlay();
-          } else {
-            alert(res.data.msg + ',该时间暂无人流量数据');
-            clearInterval(interval);
-            this.playInfo = '播放';
-          }
-        })
-        .catch(err => {
-          console.log(err);
-        })
-        .then(() => {
-          // always executed
         });
+
+        // console.log(res);
+        if (res.data.code == '200') {
+          //热力图生成成功
+          // console.log(res);
+          let heatData = res.data.data;
+
+          let heatGeoJson = {
+            type: 'FeatureCollection',
+            features: []
+          };
+
+          heatData.forEach(element => {
+            //构建单个要素
+            let feature = {
+              geometry: {
+                coordinates: undefined,
+                type: 'Point'
+              },
+              tpye: 'Feature',
+              properties: {
+                count: undefined
+              }
+            };
+            feature.geometry.coordinates = [parseFloat(element.lng), parseFloat(element.lat)];
+            feature.properties.count = parseInt(element.count);
+            heatGeoJson.features.push(feature);
+          });
+
+          // console.log(heatGeoJson, new Date() - startTime);
+          addToYueluMountainCrowdDb({ time: datetime + '-' + hour, data: heatGeoJson });
+          if (isRender) {
+            this._generateHeatMapByHour(heatGeoJson);
+            step.autoPlay(this.pauseTime !== '23');
+          }
+        } else {
+          // alert(res.data.msg + ',该时间暂无人流量数据');
+          // clearInterval(interval);
+          // this.playInfo = '播放';
+          console.log(`${datetime} ${hour}点暂无人流量数据`);
+        }
+      } catch (err) {
+        console.error(err);
+      }
+    },
+
+    //岳麓山人流量密度监控 按小时
+    _peopleAnalysisByHour: async function () {
+      let hour;
+      let datetime = $('#heat_datetimepicker').val();
+      if (datetime === '') {
+        alert('请先选择时间');
+        return;
+      }
+      if (!$('#heatmap_bar li.ystep-step-active').html()) {
+        hour = '00';
+      } else {
+        hour = $('#heatmap_bar li.ystep-step-active').html().split(':')[0];
+      }
+      if (hour === '23') this.playInfo = '播放';
+      this.pauseTime = hour;
+      // console.log($('#heatmap_bar li.ystep-step-active'));
+      // console.log(hour); // 00
+      // console.log(datetime); // 2020-12-24
+      // const startTime = new Date();
+
+      try {
+        const buffer = await readInYueluMountainCrowdDb(datetime + '-' + hour);
+        // console.log(buffer);
+        this._generateHeatMapByHour(buffer);
+        console.log(this.pauseTime);
+        this.intervalTime && clearInterval(this.intervalTime);
+        this.intervalTime = setInterval(() => {
+          step.autoPlay(this.pauseTime !== '23');
+        }, 2000);
+      } catch (err) {
+        console.log('读取缓存失败，开启降级方案请求数据');
+        this.intervalTime && clearInterval(this.intervalTime);
+        await this.requestCrowdInHour(datetime, hour);
+        this._peopleAnalysisByHour();
+      }
     },
 
     //生成热力图 按小时

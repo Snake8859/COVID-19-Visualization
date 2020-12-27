@@ -209,7 +209,8 @@ SetStep.prototype.checkPage = function (pageCont, curStep, steps) {
 };
 
 //自动播放
-SetStep.prototype.autoPlay = function () {
+SetStep.prototype.autoPlay = function (isPlay = true) {
+  if (!isPlay) return;
   var _that = this;
   if ($(_that).attr('disabled') || _that.opt.animating) {
     return false;
@@ -233,4 +234,11 @@ SetStep.prototype.autoPlay = function () {
       vm.$children[1]._subwayAnalysis();
     }
   }
+};
+
+SetStep.prototype.setZero = function () {
+  this.opt.curStep = 0;
+  this.opt.animating = true;
+  this.opt.curStep++;
+  this.setProgress(this.stepContainer, this.opt.curStep, this.opt.stepCounts);
 };

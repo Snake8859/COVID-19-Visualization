@@ -52,11 +52,11 @@ var configOptions = {
   //     'hz': "http://www.snake8859.top/DataBoard/example/hz_line_wgs84.json"
   // },
   geojson: {
-    world: 'http://127.0.0.1:5500/DataBoard/example/countriesNEW.geo.json',
-    countryFolder: 'http://127.0.0.1:5500/DataBoard/example/world/',
-    china: 'http://127.0.0.1:5500/DataBoard/example/chinaNEW.geo.json',
-    yls: 'http://127.0.0.1:5500/DataBoard/example/yls_wgs84.json',
-    hz: 'http://127.0.0.1:5500/DataBoard/example/hz_line_wgs84.json'
+    world: './example/countriesNEW.geo.json',
+    countryFolder: './example/world/',
+    china: './example/chinaNEW.geo.json',
+    yls: './example/yls_wgs84.json',
+    hz: './example/hz_line_wgs84.json'
   },
   people: {
     dataUrl: 'http://49.233.42.217:8865/map/generateHeatDataByTime',
